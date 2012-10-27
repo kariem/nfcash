@@ -17,12 +17,16 @@ var app = {
         $("#settings-open").bind("tap", function(ev){
             app.showSettings();
         });
+
         // NFC Listener
         nfc.addMimeTypeListener(
           "application/vnd.nfcash",
           function(nfcEvent) {
-            var data = nfc.bytesToString(nfcEvent.tag.ndefMessage[0].payload);
-            alert(data);
+            var data = eval("("+nfc.bytesToString(nfcEvent.tag.ndefMessage[0].payload)+")");
+            alert("Amount to pay: "+data.amount);
+            for(i in data.methods) {
+                alert("Payment type #"+(parseInt(i)+1)+" is "+data.methods[i].type+", IBAN:"+data.methods[i].data);
+            }
           },
           function() {
               console.log("Success.");
