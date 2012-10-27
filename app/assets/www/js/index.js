@@ -23,10 +23,7 @@ var app = {
           "application/vnd.nfcash",
           function(nfcEvent) {
             var data = eval("("+nfc.bytesToString(nfcEvent.tag.ndefMessage[0].payload)+")");
-            alert("Amount to pay: "+data.amount);
-            for(i in data.methods) {
-                alert("Payment type #"+(parseInt(i)+1)+" is "+data.methods[i].type+", IBAN:"+data.methods[i].data);
-            }
+            app.showPayment(data)
           },
           function() {
               console.log("Success.");
@@ -45,8 +42,28 @@ var app = {
             app.settingsController = new Controllers.Settings($(app.selector.settings));
         });
     },
+    showPayment: function(data){
+        $.mobile.changePage("payment.html",{
+            transition: "slideup",
+            changeHash: false
+        });
+        $('#payment').live('pageshow', function(event, ui) {
+            app.paymentController = new Controllers.Payment($(app.selector.payment), data);
+        });
+    },
+    getAccounts: function(){
+        var accounts = []
+        for(key in window.localStorage){
+            if(key.indexOf("account_") !== -1){
+                var account = $.parseJSON(window.localStorage.getItem(key));
+                accounts.push(account);
+            }
+        }
+        return accounts;
+    },
     selector: {
         transfer: "#transfer",
-        settings: "#settings"
+        settings: "#settings",
+        payment: "#payment"
     }
 };

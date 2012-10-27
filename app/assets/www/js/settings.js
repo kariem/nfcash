@@ -2,13 +2,7 @@ var Controllers = Controllers || {};
 
 Controllers.Settings = can.Control({
     'init': function(element , options) {
-        this.accounts = []
-        for(key in window.localStorage){
-            if(key.indexOf("account_") !== -1){
-                var account = $.parseJSON(window.localStorage.getItem(key));
-                this.accounts.push(account);
-            }
-        }
+        this.accounts = app.getAccounts();
         this.listAccounts();
         var that = this;
         element.find("#add_account").bind("change", function(el, ev){
