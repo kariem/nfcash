@@ -1,0 +1,41 @@
+<div class="account" data-role="collapsible" data-collapsed="false" id="<%= this.id %>">
+    <h3>
+        Bee One
+    </h3>
+    <form action="">
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="username">
+                    Username
+                </label>
+                <input name="" id="username" placeholder="" value="<%= this.login ? this.login.username : '' %>" type="email" />
+            </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="password">
+                    Password
+                </label>
+                <input name="" id="password" placeholder="" value="<%= this.login ? this.login.password : '' %>" type="password" />
+            </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="name">
+                    Name
+                </label>
+                <input name="" id="name" placeholder="" value="<%= this.name ? this.name : '' %>" type="text" />
+            </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="accountId">
+                    Account ID
+                </label>
+                <input name="" id="accountId" placeholder="" value="<%= this.accountId ? this.accountId : '' %>" type="text" />
+            </fieldset>
+        </div>
+        <input class="delete" type="submit" data-inline="true" data-icon="minus" data-iconpos="left" value="Delete" />
+        <input class="save" type="submit" data-inline="true" data-theme="b" data-icon="check" data-iconpos="left" value="Save" />
+    </form>
+</div>

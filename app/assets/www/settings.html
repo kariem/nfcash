@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+        </title>
+    </head>
+    <body>
+        <div data-role="page" id="settings">
+            <div data-role="content">
+                <div data-role="collapsible-set" id="accounts">
+                </div>
+                
+                <hr />
+                <div data-role="fieldcontain">
+                    <label for="add_account">
+                        Add account
+                    </label>
+                    <select name="add_account" id="add_account">
+                        <option value="">
+                            Choose type
+                        </option>
+                        <option value="beeone">
+                            Bee One
+                        </option>
+                        <option value="bank">
+                            Bank Account
+                        </option>
+                        <option value="paypal" disabled="disabled">
+                            Paypal
+                        </option>
+                    </select>
+                </div>
+                <input class="return" type="submit" data-inline="true" data-icon="home" data-iconpos="left" value="Close Settings" />
+            </div>
+        </div>
+    </body>
+</html>

@@ -16,13 +16,18 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.transferController = new Controllers.Transfer($(app.selector.transfer));
-        app.settingsController = new Controllers.Settings($(app.selector.settings));
         document.addEventListener('menubutton', app.showSettings, false);
-        //app.transferController();
+        $("#settings-open").bind("tap", function(ev){
+            app.showSettings();
+        });
     },
     showSettings: function(){
-        $.mobile.changePage($(app.selector.settings),{
-            transition: "slideup"
+        $.mobile.changePage("settings.html",{
+            transition: "slideup",
+            changeHash: false
+        });
+        $('#settings').live('pageshow', function(event, ui) {
+            app.settingsController = new Controllers.Settings($(app.selector.settings));
         });
     },
     selector: {
