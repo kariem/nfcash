@@ -4,6 +4,16 @@ Controllers.Transfer = can.Control({
       $("#submit").bind("tap", function(){
           var amount = element.find("#amount").val();
           alert("Bump your phones to transfer € "+amount);
+          // NFC Tag gets written
+          var record = ndef.mimeMediaRecord("application/vnd.nfcash", nfc.stringToBytes("test"));
+          nfc.share(
+              [record],
+              function () {
+                  navigator.notification.vibrate(100);
+              },
+              function () {
+                  alert("Failed to share tag.");
+              });
       })
       $("#received").bind("tap", function() {
           var info = { type: "iban", value: "123" };

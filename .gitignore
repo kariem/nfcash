@@ -42,5 +42,7 @@ local.properties
 # PDT-specific
 .buildpath
 
-.iml
-.idea
+# IntelliJ shit
+*.iml
+.idea/
+out/
