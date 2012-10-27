@@ -8,7 +8,9 @@ var beeone = {
 		},
 		accountId: "1", // AT032011156172743372
         name: "John Doe",
-    	url: "http://nfcash1.elasticbeanstalk.com/api"
+    	url: "http://nfcash1.elasticbeanstalk.com/api",
+    	type: "beeone",
+    	id: 1
 	},
 	prepareAjaxCalls: function() {
 	    console.log("preparing ajax calls for beeone");
