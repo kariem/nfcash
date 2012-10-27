@@ -54,9 +54,6 @@ Controllers.Settings = can.Control({
             case "bank":
                 account.iban = element.find("#iban").val();
                 break;
-            case "paypal":
-                account.iban = element.find("#email").val();
-                break;
             }
             var json = JSON.stringify(account);
             window.localStorage.setItem("account_"+id, json)
