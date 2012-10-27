@@ -15,6 +15,18 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.transferController = new Controllers.Transfer($("#app"));
+        app.transferController = new Controllers.Transfer($(app.selector.transfer));
+        app.settingsController = new Controllers.Settings($(app.selector.settings));
+        document.addEventListener('menubutton', app.showSettings, false);
+        //app.transferController();
+    },
+    showSettings: function(){
+        $.mobile.changePage($(app.selector.settings),{
+            transition: "slideup"
+        });
+    },
+    selector: {
+        transfer: "#transfer",
+        settings: "#settings"
     }
 };
