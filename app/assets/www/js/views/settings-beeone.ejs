@@ -3,39 +3,35 @@
         Bee One
     </h3>
     <form action="">
-        <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup">
-                <label for="username">
-                    Username
-                </label>
-                <input name="" id="username" placeholder="" value="<%= this.login ? this.login.username : '' %>" type="email" />
-            </fieldset>
-        </div>
-        <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup">
-                <label for="password">
-                    Password
-                </label>
-                <input name="" id="password" placeholder="" value="<%= this.login ? this.login.password : '' %>" type="password" />
-            </fieldset>
-        </div>
-        <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup">
-                <label for="name">
-                    Name
-                </label>
-                <input name="" id="name" placeholder="" value="<%= this.name ? this.name : '' %>" type="text" />
-            </fieldset>
-        </div>
-        <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup">
-                <label for="accountId">
-                    Account ID
-                </label>
-                <input name="" id="accountId" placeholder="" value="<%= this.accountId ? this.accountId : '' %>" type="text" />
-            </fieldset>
-        </div>
-        <input class="delete" type="submit" data-inline="true" data-icon="minus" data-iconpos="left" value="Delete" />
+        <fieldset>
+            <label for="username">
+                Username
+            </label>
+            <input name="" id="username" placeholder="" value="<%= this.login ? this.login.username : '' %>" type="email" />
+        </fieldset>
+        <fieldset>
+            <label for="password">
+                Password
+            </label>
+            <input name="" id="password" placeholder="" value="<%= this.login ? this.login.password : '' %>" type="password" />
+        </fieldset>
+        <input class="verify" type="button" data-inline="true" data-theme="e" data-icon="refresh" data-iconpos="left" value="Verify" />
+
+        <fieldset>
+            <label for="accountName">
+                Name
+            </label>
+            <input name="" id="accountName" placeholder="" value="<%= this.accountName ? this.accountName : '' %>" type="text" disabled/>
+        </fieldset>
+        <fieldset>
+            <label for="accountId">
+                Account ID
+            </label>
+            <select name="accountId" id="accountId" disabled>
+                <option value="<%= this.accountId ? this.accountId : '' %>">Please select</option>
+            </select>
+        </fieldset>
+        <input class="delete" type="button" data-inline="true" data-icon="minus" data-iconpos="left" value="Delete" />
         <input class="save" type="submit" data-inline="true" data-theme="b" data-icon="check" data-iconpos="left" value="Save" />
     </form>
 </div>

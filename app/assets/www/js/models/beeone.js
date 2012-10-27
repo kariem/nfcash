@@ -13,7 +13,6 @@ var beeone = {
     	id: 1
 	},
 	prepareAjaxCalls: function() {
-	    console.log("preparing ajax calls for beeone");
 	    $.ajaxPrefilter(function(options) {
 	        if (options.url.indexOf("/beeone") === 0) {
 	            options.url = beeone.config.url + options.url.replace("/beeone", '');
@@ -36,6 +35,7 @@ $.extend(Models.beeone, {
 		            data: data,
 		            success: function(userInfo, textStatus, jqXHR) {
 		            	beeone.config.userId = userInfo.id;
+                        beeone.config.name = userInfo.name;
                         beeone.auth = { headers: { "X-BeeOne-Auth": jqXHR.getResponseHeader("X-BeeOne-Auth")}}
 		            	if (typeof success === "function") {
 		            		success.apply(this, arguments);
@@ -55,13 +55,16 @@ $.extend(Models.beeone, {
 	    }
 	},
 	
-	/*
 	Account: {
-	    findAll: "/beeone/{userId}/accounts",
-	    findOne: "/beeone/{userId}/accounts/{id}"
+	    findAll: function(params, success, error) {
+            return $.ajax(can.sub("/beeone/user/{userId}/accounts", params, true), {
+                data: params,
+                success: success,
+                error: error
+            })
+        },
+	    findOne: "/beeone/user/{userId}/accounts/{id}"
 	},
-	*/
-	
 	Transaction: {
 		create: function(params, success, error) {
 			return $.ajax(can.sub("/beeone/user/{userId}/accounts/{accountId}/transactions", params, true), {
@@ -74,9 +77,15 @@ $.extend(Models.beeone, {
 			})
 		}
 	},
+    getAccounts: function(success, error) {
+        Models.beeone.Login.create({},
+            function(result) {
+                Models.beeone.Account.findAll({userId: beeone.config.userId}, success, error);
+            }, error)
+    },
 	transfer: function(iban, amount) {
 		var err = function() {
-			console.log("somewhere along the way it failed: " + arguments);
+			console.log("Something did not work", arguments);
 		};
 		Models.beeone.Login.create({},
 			function(result) {
