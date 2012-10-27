@@ -1,0 +1,23 @@
+#transfer label[for=amount] {
+  float: right;
+  font-size: 48px;
+  vertical-align: middle;
+  line-height: 72px;
+  margin-bottom: 0;
+  width: 28%;
+  text-align: center;
+}
+
+#transfer #amount {
+  font-size: 48px;
+  width: 70%;
+  text-align: right;
+  padding: 0px;
+  padding-right: 5%;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+#transfer .ui-submit span {
+  font-size: 32px;
+}
