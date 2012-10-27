@@ -9,6 +9,8 @@ Controllers.Settings = can.Control({
                 this.accounts.push(account);
             }
         }
+        element.find(".name").replaceWith(can.view("js/views/name.ejs", {name: "Scrooge McDuck"}));
+
         this.listAccounts();
         var that = this;
         element.find("#add_account").bind("change", function(el, ev){
