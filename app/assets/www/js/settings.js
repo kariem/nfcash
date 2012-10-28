@@ -27,6 +27,11 @@ Controllers.Settings = can.Control({
             that.accounts = accounts;
             that.listAccounts();
         });
+        element.find("#name").bind("change", function(ev){
+            ev.preventDefault();
+            var name = $(ev.srcElement).val();
+            window.localStorage.setItem("name", name);
+        });
 
         function getUserPassword() {
             return {

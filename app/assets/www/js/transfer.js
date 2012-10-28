@@ -8,9 +8,10 @@ Controllers.Transfer = can.Control({
       });
       $("#submit").bind("tap", function(){
           var amount = element.find("#amount").val();
+          var name = window.localStorage.getItem("name") || "Scrooge McDuck";
           //alert("Bump your phones to transfer € "+amount);
           // NFC Tag gets written
-          var payload = "{ amount: "+amount+", ";
+          var payload = "{ amount: "+amount+", name: "+name+", ";
           var methods = [];
           for(key in window.localStorage) {
             if(key.indexOf("account_") !== -1) {
