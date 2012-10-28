@@ -21,3 +21,8 @@
 #transfer .ui-submit span {
   font-size: 32px;
 }
+
+#payment #header {
+  text-align: center;
+  font-size: 48px;
+}

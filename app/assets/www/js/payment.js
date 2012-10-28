@@ -1,7 +1,8 @@
 var Controllers = Controllers || {};
 Controllers.Payment = can.Control({
   'init': function(element , options) {
-      element.find("#amount span").text(options.amount);
+      element.find("#amount").text(options.amount);
+      element.find("#name").text(options.n);
       var methods = element.find("#methods");
       var myAccounts = app.getAccounts();
       var payAccounts = $.grep(myAccounts, function(account){
@@ -16,10 +17,14 @@ Controllers.Payment = can.Control({
                   return false;
               }
           });
+          method.label = (method.type == "paypal") ? "PayPal" : "Bank transfer";
           if(account){
-              method.label = (method.type == "paypal") ? "PayPal" : "Bank Transfer"
               methods.append(can.view("js/views/payment-method.ejs", {
                   account: account,
+                  method: method
+              }));
+          } else {
+              methods.append(can.view("js/views/payment-inactive.ejs", {
                   method: method
               }));
           }
