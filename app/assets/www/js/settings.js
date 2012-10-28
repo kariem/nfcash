@@ -80,7 +80,11 @@ Controllers.Settings = can.Control({
                         select.find("option").remove();
                     }
                     $.each(accounts, function(i, a) {
-                        select.append("<option value='" + a.id + "'>" + a.iban + "</option>");
+                        var iban = a.iban;
+                        iban = iban.substring(0, 4) + "…" + iban.substring(iban.length-4);
+                        select.append("<option value='" + a.id + "'>" +
+                            a.settings.name + " (" + iban + ")</option>"
+                        );
                     })
                     if (somethingFound) {
                         select.prop("disabled", false);
