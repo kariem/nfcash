@@ -3,6 +3,7 @@ var Controllers = Controllers || {};
 Controllers.Settings = can.Control({
     'init': function(element , options) {
         this.accounts = app.getAccounts();
+        element.find(".name").replaceWith(can.view("js/views/name.ejs", {name: "Scrooge McDuck"}));
         this.listAccounts();
         var that = this;
         element.find("#add_account").bind("change", function(el, ev){
