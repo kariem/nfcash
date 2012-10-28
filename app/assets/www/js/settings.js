@@ -7,7 +7,7 @@ Controllers.Settings = can.Control({
         this.listAccounts();
         var that = this;
         element.find("#add_account").bind("change", function(el, ev){
-            var type = element.find(":selected").val();
+            var type = $(this).find(":selected").val();
             if(type){
                 that.accounts.push({type: type, id: new Date().getTime()});
                 that.listAccounts();
@@ -46,15 +46,19 @@ Controllers.Settings = can.Control({
             });
             switch(account.type){
             case "beeone":
-                account.login = getUserPassWord();
+                //account.login = getUserPassWord();
                 account.name = element.find("#name").val();
-                account.accountId = element.find("#accountId").val();
+                account.iban = $('#accountId option:selected').html();
                 break;
             case "bank":
                 account.iban = element.find("#iban").val();
                 break;
+            case "paypal":
+                account.iban = element.find("#email").val();
+                break;
             }
             var json = JSON.stringify(account);
+            alert(json);
             window.localStorage.setItem("account_"+id, json)
         });
         element.find(".verify").live("tap", function(ev, el) {
