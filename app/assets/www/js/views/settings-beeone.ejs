@@ -23,6 +23,14 @@
             </label>
             <input name="" id="accountName" placeholder="" value="<%= this.accountName ? this.accountName : '' %>" type="text" disabled/>
         </fieldset>
+        <% if(this.iban){ %>
+            <fieldset>
+                <label for="accountName">
+                    Name
+                </label>
+                <input name="" id="iban" placeholder="" value="<%= this.iban %>" type="text" />
+            </fieldset>
+        <% } else { %>
         <fieldset>
             <label for="accountId">
                 Account ID
@@ -31,6 +39,7 @@
                 <option value="<%= this.accountId ? this.accountId : '' %>">Please select</option>
             </select>
         </fieldset>
+        <% } %>
         <input class="delete" type="button" data-inline="true" data-icon="minus" data-iconpos="left" value="Delete" />
         <input class="save" type="submit" data-inline="true" data-theme="b" data-icon="check" data-iconpos="left" value="Save" />
     </form>

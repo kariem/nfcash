@@ -12,7 +12,9 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.transferController = new Controllers.Transfer($(app.selector.transfer));
+        if(!app.transferController){
+            app.transferController = new Controllers.Transfer($(app.selector.transfer));
+        }
         document.addEventListener('menubutton', function() { alert("Settings"); }, false);
         $("#settings-open").bind("tap", function(ev){
             app.showSettings();
@@ -39,7 +41,7 @@ var app = {
             changeHash: false
         });
         $('#settings').live('pageshow', function(event, ui) {
-            app.settingsController = new Controllers.Settings($(app.selector.settings));
+            new Controllers.Settings($(app.selector.settings));
         });
     },
     showPayment: function(data){
@@ -48,7 +50,7 @@ var app = {
             changeHash: false
         });
         $('#payment').live('pageshow', function(event, ui) {
-            app.paymentController = new Controllers.Payment($(app.selector.payment), data);
+            new Controllers.Payment($(app.selector.payment), data);
         });
     },
     getAccounts: function(){

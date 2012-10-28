@@ -51,9 +51,9 @@ Controllers.Settings = can.Control({
             });
             switch(account.type){
             case "beeone":
-                //account.login = getUserPassWord();
-                account.name = element.find("#name").val();
-                account.iban = $('#accountId option:selected').html();
+                account.login = getUserPassword();
+                account.accountName = element.find("#accountName").val();
+                account.iban = $('#accountId option:selected').val();
                 break;
             case "bank":
                 account.iban = element.find("#iban").val();
@@ -87,7 +87,7 @@ Controllers.Settings = can.Control({
                     $.each(accounts, function(i, a) {
                         var iban = a.iban;
                         iban = iban.substring(0, 4) + "…" + iban.substring(iban.length-4);
-                        select.append("<option value='" + a.id + "'>" +
+                        select.append("<option value='" + a.iban + "'>" +
                             a.settings.name + " (" + iban + ")</option>"
                         );
                     })
