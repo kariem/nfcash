@@ -3,7 +3,7 @@ var Controllers = Controllers || {};
 Controllers.Settings = can.Control({
     'init': function(element , options) {
         this.accounts = app.getAccounts();
-        element.find(".name").replaceWith(can.view("js/views/name.ejs", {name: "Scrooge McDuck"}));
+        element.find(".name").replaceWith(can.view("js/views/name.ejs", {name: window.localStorage.getItem("name") || "Donald Tump" }));
         this.listAccounts();
         var that = this;
         element.find("#add_account").bind("change", function(el, ev){
@@ -63,7 +63,7 @@ Controllers.Settings = can.Control({
                 break;
             }
             var json = JSON.stringify(account);
-            alert(json);
+            //alert(json);
             window.localStorage.setItem("account_"+id, json)
         });
         element.find(".verify").live("tap", function(ev, el) {

@@ -8,10 +8,10 @@ Controllers.Transfer = can.Control({
       });
       $("#submit").bind("tap", function(){
           var amount = element.find("#amount").val();
-          var name = window.localStorage.getItem("name") || "Scrooge McDuck";
+          var name = window.localStorage.getItem("name") || "Donald Tump";
           //alert("Bump your phones to transfer € "+amount);
           // NFC Tag gets written
-          var payload = "{ amount: "+amount+", name: "+name+", ";
+          var payload = "{ amount: "+amount+", name: '"+name+"', ";
           var methods = [];
           for(key in window.localStorage) {
             if(key.indexOf("account_") !== -1) {
@@ -20,7 +20,7 @@ Controllers.Transfer = can.Control({
             }
           }
           payload += "methods: ["+methods.join(", ") + "] }";
-          alert(payload);
+          //alert(payload);
           var record = ndef.mimeMediaRecord("application/vnd.nfcash", nfc.stringToBytes(payload));
           nfc.share(
               [record],

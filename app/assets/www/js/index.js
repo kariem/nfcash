@@ -12,10 +12,10 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        if(!app.transferController){
+//        if(!app.transferController){
             app.transferController = new Controllers.Transfer($(app.selector.transfer));
-        }
-        document.addEventListener('menubutton', function() { alert("Settings"); }, false);
+//        }
+//        document.addEventListener('menubutton', function() { alert("Settings"); }, false);
         $("#settings-open").bind("tap", function(ev){
             app.showSettings();
         });
@@ -25,7 +25,9 @@ var app = {
           "application/vnd.nfcash",
           function(nfcEvent) {
             var data = eval("("+nfc.bytesToString(nfcEvent.tag.ndefMessage[0].payload)+")");
-            app.showPayment(data)
+            //alert(data.name);
+            app.showPayment(data);
+
           },
           function() {
               console.log("Success.");

@@ -1,8 +1,9 @@
 var Controllers = Controllers || {};
 Controllers.Payment = can.Control({
   'init': function(element , options) {
-      element.find("#amount").text(options.amount);
-      element.find("#name").text(options.name);
+      element.find("#amount").text(options.name+" "+options.amount)
+//      alert(options.name);
+//      element.find("#amount").text(options.name);
       var methods = element.find("#methods");
       var myAccounts = app.getAccounts();
       var payAccounts = $.grep(myAccounts, function(account){
