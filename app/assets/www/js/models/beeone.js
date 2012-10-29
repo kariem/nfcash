@@ -8,7 +8,7 @@ var beeone = {
 		},
 		accountId: "1", // AT032011156172743372
         name: "John Doe",
-    	url: "http://nfcash1.elasticbeanstalk.com/api",
+    	url: "http://nblighttest1.elasticbeanstalk.com/api",
     	type: "beeone",
     	id: 1
 	},
