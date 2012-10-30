@@ -1,7 +1,7 @@
 var app = {
     // Application Constructor
     initialize: function() {
-        //document.addEventListener('deviceready', app.onDeviceReady, false);
+        document.addEventListener('deviceready', app.onDeviceReady, false);
     },
     // Bind Event Listeners
     //
