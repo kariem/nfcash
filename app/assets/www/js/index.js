@@ -22,10 +22,10 @@ var app = {
 
         // NFC Listener
         nfc.addMimeTypeListener(
-          "application/vnd.nfcash",
+          "application/com.github.nfcash",
           function(nfcEvent) {
             var data = eval("("+nfc.bytesToString(nfcEvent.tag.ndefMessage[0].payload)+")");
-            //alert(data.name);
+            //alert(data.amount);
             app.showPayment(data);
 
           },

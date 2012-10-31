@@ -21,9 +21,16 @@ Controllers.Transfer = can.Control({
           }
           payload += "methods: ["+methods.join(", ") + "] }";
           //alert(payload);
-          var record = ndef.mimeMediaRecord("application/vnd.nfcash", nfc.stringToBytes(payload));
+          var record = ndef.mimeMediaRecord("application/com.github.nfcash", nfc.stringToBytes(payload));
+          var recordApp = ndef.record(0x04, [0x61,0x6e,0x64,0x72,0x6f,0x69,0x64,0x2e,0x63,0x6f,0x6d,0x3a,0x70,0x6b,0x67], [], nfc.stringToBytes("com.github.nfcash"));
+          var url = nfc.stringToBytes("http://play.google.com/store/apps/details?id=com.github.nfcash");
+          // 0 byte in the beginning means that the protocol is included in the URI
+          url.unshift(0);
+          var recordU = ndef.record(0x01, [0x55], [], url);
+          //alert(nfc.stringToBytes("play.google.com/store/apps/details?id=com.github.nfcash"));
+
           nfc.share(
-              [record],
+              [record, recordU, recordApp],
               function () {
                   navigator.notification.vibrate(100);
               },
